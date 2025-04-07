@@ -103,6 +103,7 @@ plotAPEWindow(Rmodsars7[[2]], 'EpiEstim_sars7', Rmodsars7[[1]], Ipltsars, folres
 
 # Setup grid and noise parameters
 Rmin = 0.01; Rmax = 10; eta = 0.1
+Rprior = c(1, 2); a = 0.025
 
 # Uniform prior over grid of size m
 m = 200; pR0 = (1/m)*rep(1, m)
@@ -113,6 +114,7 @@ Rgrid = seq(Rmin, Rmax, length.out = m)
 nflu = length(tflu); nsars = length(tsars)
 
 # Filtered (causal) estimates as list [Rmed, Rhatci, Rmean, pR, pRup, pstate]
+
 Rfilt_flu = epiFilter(Rgrid, m, eta, pR0, nflu, Lflu[tflu], Iflu[tflu], a)
 Rfilt_sars = epiFilter(Rgrid, m, eta, pR0, nsars, Lsars[tsars], Isars[tsars], a)
 
